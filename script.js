@@ -30,7 +30,12 @@ Base.LifeNumbers = function() {
 		calNumberWeeks()
 		calNumberMonths();
 		calNumberHeartBeats();
-		calNumberBreaths()
+		calNumberBreaths();
+		calBushTeeth();
+		calNumberPints();
+		calNumberToilet();
+		calNumberFood();
+		calNumberWalk();
 		
 	}
 	
@@ -162,14 +167,14 @@ Base.LifeNumbers = function() {
 	}
 	
 	function calNumberWeeks() {
+	
+		var oneDay = 24*60*60*1000;
+		var firstDate = today;
+		var secondDate = birthDate;
 		
-		function daydiff(first, second) {
+		weeksAlive = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
 		
-		    return (second-first)/(1000*60*60*24);
-		    
-		}
-		
-		weeksAlive = Math.floor(daydiff(birthDate, today));
+		weeksAlive = Math.floor(weeksAlive / 7);
 
 		$('.num-weeks-alive').html(weeksAlive);
 	
@@ -178,19 +183,83 @@ Base.LifeNumbers = function() {
 	function calNumberHeartBeats() {
 	
 		var beats = minsAlive * 72;
-		var addCommas = beats.toLocaleString('en')
+		var beats = addCommas(beats);
 		
-		$('.num-heartbeats').html(addCommas);
+		$('.num-heartbeats').html(beats);
 		
 	}
 
 	function calNumberBreaths() {
 	
 		var breaths = minsAlive * 14;
-		var addCommas = breaths.toLocaleString('en')
+		var breaths = addCommas(breaths);
 		
-		$('.num-breaths').html(addCommas);
+		$('.num-breaths').html(breaths);
 		
+	}
+	
+	function calBushTeeth() {
+	
+		var brushes = daysAlive * 2;
+		var brushesWithCommas = addCommas(brushes);
+		
+		$('.num-brusheteeth').html(brushesWithCommas);
+		
+		//1 g avergae brush size
+		var kgtoothpaste = brushes / 1000;
+		var kgtoothpaste = Math.round(kgtoothpaste);
+		
+		$('.num-gramtoothpaste').html(kgtoothpaste)
+	}
+	
+	function calNumberFood() {
+	
+		// a person to eat per day is 10 to 20 percent of his body weight == 7.5kg
+		var gramsfood = daysAlive * 7.5;
+		var gramsfood = addCommas(gramsfood);
+		
+		$('.num-food').html(gramsfood);
+		
+	}
+	
+	function calNumberPints() {
+	
+		// 18 x 52 == 936
+		var legalAge = weeksAlive - 936;
+		var pints = legalAge * 8;
+		var pints = addCommas(pints);
+		
+		$('.num-pints').html(pints);
+		
+	}
+	
+	function calNumberToilet() {
+	
+		var toiletVisit = daysAlive * 7;
+		var toiletPint = toiletVisit * 0.4;
+		
+		$('.num-toilet').html(toiletVisit);
+		$('.num-toiletpint').html(toiletPint);
+		
+	}
+	
+	function calNumberWalk() {
+	
+		// That means it takes just over 2,000 steps to walk one mile, and 10,000 steps is close to 5 miles.
+		// 7192 average male steps
+		var numSteps = daysAlive * 7192;
+		var mileSteps = numSteps / 2000;
+		var mileSteps = Math.round(mileSteps);
+		var mileSteps = addCommas(mileSteps);
+		
+		$('.num-step').html(mileSteps);
+		
+	}
+	
+	function addCommas(num) {
+	
+		return num.toLocaleString('en')
+	
 	}
 
 	init();
