@@ -14,6 +14,7 @@ Base.LifeNumbers = function() {
 	
 	var birthDate = new Date(1986,7,17);
 	var today = new Date();
+	var oneDay = 24*60*60*1000;
 	
 	var minsAlive;
 	var hoursAlive;
@@ -42,10 +43,9 @@ Base.LifeNumbers = function() {
 	function calBirthdate() {
 		
 		// Birthdate info
-		var d = birthDate;
-	    var curr_date = d.getDate();
-	    var curr_month = d.getMonth() + 1; //Months are zero based
-	    var curr_year = d.getFullYear();
+	    var curr_date = birthDate.getDate();
+	    var curr_month = birthDate.getMonth() + 1; //Months are zero based
+	    var curr_year = birthDate.getFullYear();
 	    
 	    // Creat month names array
 	    // Get the month names
@@ -63,12 +63,12 @@ Base.LifeNumbers = function() {
 	    	"November", 
 	    	"December"
 	    ];
-		var monthName = monthNames[d.getMonth()];
+		var monthName = monthNames[birthDate.getMonth()];
 		
 		// Function to return th, nd, rd etc
-		function dateLetterFunction(d) {
-		  if(d>3 && d<21) return 'th';
-		  switch (d % 10) {
+		function dateLetterFunction(date) {
+		  if(date>3 && date<21) return 'th';
+		  switch (date % 10) {
 		        case 1:  return "st";
 		        case 2:  return "nd";
 		        case 3:  return "rd";
@@ -132,11 +132,7 @@ Base.LifeNumbers = function() {
 
 	function calNumberDays() {
 	
-		var oneDay = 24*60*60*1000;
-		var firstDate = today;
-		var secondDate = birthDate;
-		
-		daysAlive = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
+		daysAlive = Math.round((today.getTime() - birthDate.getTime())/(oneDay));
 		
 		$('.num-days-alive').html(daysAlive);
 	
@@ -144,23 +140,20 @@ Base.LifeNumbers = function() {
 	
 	function calNumberMonths() {
 	
-		var date1 = birthDate;
-		var date2 = today;
+		var year1 = birthDate.getFullYear();
+		var year2 = today.getFullYear();
 		
-		var year1 = date1.getFullYear();
-		var year2 = date2.getFullYear();
+		var month1 = birthDate.getMonth();
+		var month2 = today.getMonth();
 		
-		var month1 = date1.getMonth();
-		var month2 = date2.getMonth();
-		
-		if(month1===0) {
+		if(month1 === 0) {
 		
 		  month1++;
 		  month2++;
 		  
 		}
 		
-		monthsAlive = (year2-year1)*12+(month2-month1)+1;
+		monthsAlive = (year2 - year1) * 12 + (month2 - month1) + 1;
 		
 		$('.num-months-alive').html(monthsAlive);
 	
@@ -168,11 +161,7 @@ Base.LifeNumbers = function() {
 	
 	function calNumberWeeks() {
 	
-		var oneDay = 24*60*60*1000;
-		var firstDate = today;
-		var secondDate = birthDate;
-		
-		weeksAlive = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
+		weeksAlive = Math.round((today.getTime() - birthDate.getTime())/(oneDay));
 		
 		weeksAlive = Math.floor(weeksAlive / 7);
 
@@ -197,19 +186,18 @@ Base.LifeNumbers = function() {
 		$('.num-breaths').html(breaths);
 		
 	}
+
+	function calNumberWalk() {
 	
-	function calBushTeeth() {
-	
-		var brushes = daysAlive * 2;
-		var brushesWithCommas = addCommas(brushes);
+		// That means it takes just over 2,000 steps to walk one mile, and 10,000 steps is close to 5 miles.
+		// 7192 average male steps
+		var numSteps = daysAlive * 7192;
+		var mileSteps = numSteps / 2000;
+		var mileSteps = Math.round(mileSteps);
+		var mileSteps = addCommas(mileSteps);
 		
-		$('.num-brusheteeth').html(brushesWithCommas);
+		$('.num-step').html(mileSteps);
 		
-		//1 g avergae brush size
-		var kgtoothpaste = brushes / 1000;
-		var kgtoothpaste = Math.round(kgtoothpaste);
-		
-		$('.num-gramtoothpaste').html(kgtoothpaste)
 	}
 	
 	function calNumberFood() {
@@ -237,25 +225,28 @@ Base.LifeNumbers = function() {
 	
 		var toiletVisit = daysAlive * 7;
 		var toiletPint = toiletVisit * 0.4;
+		var toiletPint = Math.floor(toiletPint);
 		
 		$('.num-toilet').html(toiletVisit);
 		$('.num-toiletpint').html(toiletPint);
 		
 	}
+
+	function calBushTeeth() {
 	
-	function calNumberWalk() {
-	
-		// That means it takes just over 2,000 steps to walk one mile, and 10,000 steps is close to 5 miles.
-		// 7192 average male steps
-		var numSteps = daysAlive * 7192;
-		var mileSteps = numSteps / 2000;
-		var mileSteps = Math.round(mileSteps);
-		var mileSteps = addCommas(mileSteps);
+		var brushes = daysAlive * 2;
+		var brushesWithCommas = addCommas(brushes);
 		
-		$('.num-step').html(mileSteps);
+		$('.num-brusheteeth').html(brushesWithCommas);
 		
+		//1 g avergae brush size
+		var kgtoothpaste = brushes / 1000;
+		var kgtoothpaste = Math.round(kgtoothpaste);
+		
+		$('.num-gramtoothpaste').html(kgtoothpaste)
 	}
 	
+	// Function to add commas to the numbers
 	function addCommas(num) {
 	
 		return num.toLocaleString('en')
