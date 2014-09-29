@@ -32,6 +32,7 @@ Base.LifeNumbers = function() {
 		calNumberMonths();
 		calNumberHeartBeats();
 		calNumberBreaths();
+		calNumberBlink();
 		calNumberSleep();
 		calNumberWalk();
 		calNumberFood();
@@ -185,6 +186,21 @@ Base.LifeNumbers = function() {
 		var breaths = addCommas(breaths);
 		
 		$('.num-breaths').html(breaths);
+		
+	}
+
+	function calNumberBlink() {
+	
+		var blinks = minsAlive * 10;
+		var blinksComma = addCommas(blinks);
+
+		// 480 mins in 8 hours
+		var numMinAsleep = daysAlive * 480;
+		var numMinAsleep = blinks - numMinAsleep;
+		var numMinAsleepComma = addCommas(numMinAsleep);
+		
+		$('.num-blink').html(blinksComma);
+		$('.num-blink-sleep').html(numMinAsleepComma);
 		
 	}
 
