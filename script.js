@@ -39,6 +39,7 @@ Base.LifeNumbers = function() {
 		calNumberPints();
 		calNumberToilet();
 		calBushTeeth();
+		calNumKiss();
 		
 	}
 	
@@ -182,6 +183,7 @@ Base.LifeNumbers = function() {
 
 	function calNumberBreaths() {
 	
+		// Going off 14 breaths a day
 		var breaths = minsAlive * 14;
 		var breaths = addCommas(breaths);
 		
@@ -190,12 +192,15 @@ Base.LifeNumbers = function() {
 	}
 
 	function calNumberBlink() {
+
+		var numBlinksPerDay = 10;
 	
-		var blinks = minsAlive * 10;
+		var blinks = minsAlive * numBlinksPerDay;
 		var blinksComma = addCommas(blinks);
 
 		// 480 mins in 8 hours
 		var numMinAsleep = daysAlive * 480;
+		var numMinAsleep = numMinAsleep * numBlinksPerDay;
 		var numMinAsleep = blinks - numMinAsleep;
 		var numMinAsleepComma = addCommas(numMinAsleep);
 		
@@ -205,12 +210,14 @@ Base.LifeNumbers = function() {
 	}
 
 	function calNumberSleep() {
+
+		var numHoursSleepPerDay = 8;
 	
-		var numHoursSleep = daysAlive * 8;
+		var numHoursSleep = daysAlive * numHoursSleepPerDay;
 		var numDaysSleep = numHoursSleep / 24;
-		var numDaysSleep = Math.round(numDaysSleep);
+		var numDaysSleep = Math.floor(numDaysSleep);
 		var numYearsSleep = numDaysSleep / 365;
-		var numYearsSleep = Math.round(numYearsSleep);
+		var numYearsSleep = Math.floor(numYearsSleep);
 		
 		$('.num-time-asleep').html(numDaysSleep);
 		$('.num-years-asleep').html(numYearsSleep)
@@ -274,6 +281,19 @@ Base.LifeNumbers = function() {
 		var kgtoothpaste = Math.round(kgtoothpaste);
 		
 		$('.num-gramtoothpaste').html(kgtoothpaste)
+	}
+
+	function calNumKiss() {
+
+		// 16 x 52 == 832
+		var legalAge = weeksAlive - 832;
+	
+		var kisses = weeksAlive * 1;
+		var kisses = kisses - 832;
+		var kissesWithCommas = addCommas(kisses);
+		
+		$('.num-kiss').html(kissesWithCommas);
+
 	}
 	
 	// Function to add commas to the numbers
