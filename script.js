@@ -32,11 +32,12 @@ Base.LifeNumbers = function() {
 		calNumberMonths();
 		calNumberHeartBeats();
 		calNumberBreaths();
-		calBushTeeth();
+		calNumberSleep();
+		calNumberWalk();
+		calNumberFood();
 		calNumberPints();
 		calNumberToilet();
-		calNumberFood();
-		calNumberWalk();
+		calBushTeeth();
 		
 	}
 	
@@ -184,6 +185,19 @@ Base.LifeNumbers = function() {
 		var breaths = addCommas(breaths);
 		
 		$('.num-breaths').html(breaths);
+		
+	}
+
+	function calNumberSleep() {
+	
+		var numHoursSleep = daysAlive * 8;
+		var numDaysSleep = numHoursSleep / 24;
+		var numDaysSleep = Math.round(numDaysSleep);
+		var numYearsSleep = numDaysSleep / 365;
+		var numYearsSleep = Math.round(numYearsSleep);
+		
+		$('.num-time-asleep').html(numDaysSleep);
+		$('.num-years-asleep').html(numYearsSleep)
 		
 	}
 
