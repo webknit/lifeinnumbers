@@ -21,6 +21,7 @@ Base.LifeNumbers = function() {
 	var daysAlive;
 	var weeksAlive;
 	var monthsAlive;
+	var yearsAlive;
 
 	function init() {
 		
@@ -40,6 +41,13 @@ Base.LifeNumbers = function() {
 		calNumberToilet();
 		calBushTeeth();
 		calNumKiss();
+		calNumHair();
+		calNumQueue();
+		calNumWords();
+		calPennyADay();
+		calFiftyADay();
+		calNumFart();
+		calNumShoes();
 		
 	}
 	
@@ -157,6 +165,7 @@ Base.LifeNumbers = function() {
 		}
 		
 		monthsAlive = (year2 - year1) * 12 + (month2 - month1) + 1;
+		yearsAlive = Math.round(monthsAlive / 12);
 		
 		$('.num-months-alive').html(monthsAlive);
 	
@@ -295,6 +304,77 @@ Base.LifeNumbers = function() {
 		$('.num-kiss').html(kissesWithCommas);
 
 	}
+	
+	function calNumHair() {
+
+		// 6 inches hair per year
+		var inchesOfHair = yearsAlive * 6;
+		var inchesOfHair = addCommas(inchesOfHair);
+		
+		$('.num-hair').html(inchesOfHair);
+
+	}
+	
+	function calNumQueue() {
+
+		// 108 hours in queue per year
+		var hoursInQueue = yearsAlive * 108;
+		var hoursInQueue = hoursInQueue / 24;
+		var hoursInQueue = addCommas(hoursInQueue);
+		
+		$('.num-queue').html(hoursInQueue);
+
+	}
+	
+	function calNumWords() {
+
+		// 7k words per day
+		var numWords = daysAlive * 108;
+		var numWords = addCommas(numWords);
+		
+		$('.num-words').html(numWords);
+
+	}
+	
+	function calPennyADay() {
+
+		var pennyDay = daysAlive * 1;
+		var pennyDay = pennyDay / 100;
+		var pennyDay = addCommas(pennyDay);
+		
+		$('.num-pennyday').html(pennyDay);
+
+	}
+	
+	function calFiftyADay() {
+
+		var fiftyDay = daysAlive * 0.50;
+		var fiftyDay = Math.round(fiftyDay);
+		var fiftyDay = addCommas(fiftyDay);
+		
+		$('.num-fiftyday').html(fiftyDay);
+
+	}
+	
+	function calNumFart() {
+
+		var farty = daysAlive * 14;
+		var farty = addCommas(farty);
+		
+		$('.num-fart').html(farty);
+
+	}
+
+	function calNumShoes() {
+
+		// Based on 5 shoes per year
+		var numShoes = yearsAlive * 5;
+		var numShoes = addCommas(numShoes);
+		
+		$('.num-shoes').html(numShoes);
+
+	}
+
 	
 	// Function to add commas to the numbers
 	function addCommas(num) {
