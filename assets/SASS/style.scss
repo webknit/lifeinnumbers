@@ -1,0 +1,569 @@
+/* - BASE HTML TEMPLATE
+------------------------------------------------- 
+	Description: Base/Main CSS styles
+	Author: Shane Prendergast
+	Author URL: http://www.webknit.co.uk
+	Template URL: http://base.webknit.co.uk/
+	Notes: 
+		Base Css styles and Mobile first approach. 
+		If you're using Grunt then this will be compiled to style.css
+		If you're not using Grunt, or want to know how to use grunt, then have a read of the following post for more info.
+		http://shaneprendergast.co.uk/css/a-guide-to-base/
+/*
+
+
+/* - CONTENTS
+-------------------------------------------------
+	- SASS modules ......................... 1.0.
+		- Compass .......................... 1.1.
+    	- Variables ........................ 1.2.
+    	- Functions .........................1.3.
+    	- Mixins ............................1.4.
+    	- Vendor ............................1.5.
+    	- Animations ........................1.6.
+    - CSS Reset ............................ 2.0.
+    	- Main reset ........................2.1.
+    - SASS partials ........................ 3.0.
+    	- Base ............................. 3.1.
+    	- Buttons ...........................3.2.
+    	- Forms ............................ 3.3
+    - Grids ................................ 4.0.
+    - Example section ...................... 5.0.
+    - @font-face ........................... 0.0.
+*/
+
+
+/*********************************************
+	- 1.0 -  SASS MODULES
+	The modules directory is reserved for Sass code that doesn't cause Sass to actually output CSS. 
+	Things like mixin declarations, functions, and variables.
+*********************************************/
+
+	/* - 1.1. - COMPASS
+	------------------------------------------ */
+	
+	@import "compass";
+
+
+	/* - 1.2. - COLOURS, GRADIENTS, TYPOGRAPHY
+	------------------------------------------ */
+	
+	@import "modules/_variables";
+
+
+	/* - 1.3. - FUNCTIONS
+	------------------------------------------ */
+
+	@import "modules/_functions";
+	
+	
+	/* - 1.4. - MIXINS
+	------------------------------------------ */
+
+	@import "modules/_mixins";
+
+
+	/* - 1.5. - VENDOR
+	------------------------------------------ */
+
+	@import "modules/_vendor";
+	
+	
+	/* - 1.6. - ANIMATIONS
+	------------------------------------------ */
+
+	@import "modules/_animations";
+	
+	
+/*********************************************
+	- 2.0 -  CSS RESET
+*********************************************/
+
+	/* - 2.1. - RESET INCLUDING HTML5
+	------------------------------------------ */
+	
+	@import "partials/_reset";
+	
+
+/*********************************************
+	- 3.0 -  SASS PARTIALS
+	The partials directory is where most of the CSS is constructed. 
+	Plan ahead and think how to structure these.
+*********************************************/
+	
+	/* - 3.1. - BASE ELEMENTS, STRUCTURE, TYPOGRAPHY, LINKS
+	------------------------------------------ */
+	
+	@import "partials/_base";
+	
+	
+	/* - 3.2. - BUTTONS 
+	------------------------------------------ */
+	
+	@import "partials/_buttons";
+	
+	
+	/* - 3.3. - FORMS 
+	------------------------------------------ */
+	
+	@import "partials/_forms";
+
+
+/*********************************************
+	- 4.0 -  GRIDS
+*********************************************/
+
+	@import "partials/_grid";
+
+
+/*********************************************
+	- 5.0 -  EXAMPLE SECTION
+*********************************************/
+
+	.overlay-box-section {
+		background: rgba(250,248,248,0.98);
+		position: fixed;
+		height: 100%;
+		overflow: scroll;
+		top: 0;
+		width: 100%;
+		z-index: 999999;
+		&__box {
+			background: #ffffff;
+			border: 1px solid #d7d6d6;
+			margin: 2em 0.5em;
+			padding: 2em;
+			text-align: center;
+			@include border-radius(5px);
+			@include breakpoint(medium) {
+				left: 50%;
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%, -50%);
+					-webkit-transform: translate(-50%, -50%);
+						-moz-transform: translate(-50%, -50%);
+			}
+		}
+	}
+
+	.sign-in-section {
+		background: rgba(250,248,248,0.98);
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		z-index: 999999;
+		&__form {
+			input[type=submit] {
+				margin-bottom: 0;
+			}
+			.control-label {
+				font-size: 0.8em;
+			}
+			.controls {
+				margin-bottom: 2em;
+			}
+			select {
+				padding: 1em 3.5em 1em 1em;
+			}
+			.error-msg {
+				color: red;
+				display: block;
+				margin: 1em 0;
+			}
+		}
+		&__logo {
+			display: inline-block;
+			margin-bottom: 1em;
+			max-width: 100px;
+		}
+	}
+	
+	.main-header {
+		background: #faf8f8;
+		border-top: 1em solid #e6e5e5;
+		padding: 1em 0 3em;
+		position: relative;
+		@include breakpoint(medium) {
+			padding: 3em 0 3em;
+		}
+		h2 {
+			color: #cdcdcc;
+			display: block;
+			font-size: 0.8em;
+			margin: 0 auto;
+			max-width: 90%;
+			text-align: center;
+			@include breakpoint(medium) {
+				display: inline-block;
+				float: left;
+			}
+			span {
+				display: none;
+				@include breakpoint(medium) {
+					display: inline;
+				}
+			}
+			a {
+				color: #fad5d5;
+				&:hover {
+					color: #fad5d5;
+					text-decoration: underline;
+				}
+			}
+		}
+		&__logo {
+			left: 0;
+			margin: 0 auto;
+			position: absolute;
+			right: 0;
+			top: 33px;
+			width: 104px;
+			z-index: 99;
+			@include breakpoint(medium) {
+				top: 25px;
+				width: 150px;
+			}
+		}
+		&__icons {
+			display: none;
+			float: right;
+			@include breakpoint(medium) {
+				display: inline-block;
+			}
+			li {
+				display: inline;
+				margin-left: 0.5em;
+			}
+			a {
+				color: #cdcdcc;
+				&:hover {
+					color: #fad5d5;
+				}
+			}
+		}
+	}
+	
+	.information-box {
+		display: none;
+		&__icon {
+			margin: 0 auto 1em;
+		}
+		&__title {
+			font-size: 1.1em;
+			margin: 0 0 1em;
+		}
+		&__content-p {
+			margin-bottom: 0;
+		}
+	}
+	
+	.banner-section {
+		border-bottom: 2px solid #e6e5e5;
+		height: 300px;
+		overflow: hidden;
+		padding: 2em 0;
+		position: relative;
+		@include breakpoint(medium) {
+			height: 400px;
+		}
+		@include breakpoint(large) {
+			height: 550px;
+		}
+		h2 {
+			font-size: 2.3em;
+			margin: 0;
+			position: relative;
+			text-align: center;
+			text-shadow: 3px 3px 0px #fad5d5;
+			z-index: 99;
+			@include breakpoint(medium) {
+				font-size: 3.5em;
+			}
+			@include breakpoint(large) {
+				font-size: 6em;
+				width: 100%;
+			}
+		}
+		&__icon {
+			position: absolute;
+			&--buildings {
+				animation: buildingsMovement 30s infinite linear;
+				-webkit-animation: buildingsMovement 30s infinite linear;
+  					-moz-animation: buildingsMovement 30s infinite linear;
+  						-o-animation: buildingsMovement 30s infinite linear;
+  				background-image: url(assets/img/buildings.svg);
+  				background-position: bottom;
+  				background-repeat: repeat-x;
+				bottom: 0;
+				height: 167px;
+				left: 0;
+				margin: 0 auto;
+				right: 0;
+				width: 100%;
+			}
+			&--signpost {
+				bottom: 0;
+				left: 0;
+				margin: 0 auto;
+				right: 0;
+				width: 30px;
+				@include breakpoint(medium) {
+					width: 60px;
+				}
+			}
+			&--flowers {
+				display: none;
+				bottom: 0;
+				right: 10%;
+				width: 50px;
+				@include breakpoint(medium) {
+					display: block;
+					right: 20%;
+					width: 30px;
+				}
+			}
+			&--cloud {
+				animation: cloudMovement 25s infinite;
+				-webkit-animation: cloudMovement 25s infinite;
+  					-moz-animation: cloudMovement 25s infinite;
+  						-o-animation: cloudMovement 25s infinite;
+				width: 60px;
+				@include breakpoint(medium) {
+					width: 100px;
+				}
+			}
+			&--cloud-one {
+				animation-delay: 2s;
+					-webkit-animation-delay: 2s;
+						-moz-animation-delay: 2s;
+							-o-animation-delay: 2s;
+				left: 0;
+				margin: 0 auto;
+				right: 0;
+				top: 5em;
+				@include breakpoint(medium) {
+					top: 11em;
+				}
+			}
+			&--cloud-two {
+				animation-delay: 6s;
+					-webkit-animation-delay: 6s;
+						-moz-animation-delay: 6s;
+							-o-animation-delay: 6s;
+				left: 10%;
+				top: 4em;
+				@include breakpoint(medium) {
+					top: 10em;
+				}
+			}
+			&--cloud-three {
+				right: 10%;
+				top: 3em;
+				@include breakpoint(medium) {
+					top: 7em;
+				}
+			}
+			&--bike {
+	  			animation: leftToRight 10s infinite linear;
+				-webkit-animation: leftToRight 10s infinite linear;
+  					-moz-animation: leftToRight 10s infinite linear;
+  						-o-animation: leftToRight 10s infinite linear;
+				bottom: 0;
+				width: 40px;
+				@include breakpoint(medium) {
+					width: 80px;
+				}
+			}
+			&--helicopter {
+	  			animation: helicopterMovement 20s infinite linear;
+				-webkit-animation: helicopterMovement 20s infinite linear;
+  					-moz-animation: helicopterMovement 20s infinite linear;
+  						-o-animation: helicopterMovement 20s infinite linear;
+				top: 25%;
+				left: -50%;
+				width: 80px;
+				@include breakpoint(medium) {
+					width: 180px;
+				}
+			}
+			&--plane {
+	  			animation: planeMovement 30s infinite linear;
+				-webkit-animation: planeMovement 30s infinite linear;
+  					-moz-animation: planeMovement 30s infinite linear;
+  						-o-animation: planeMovement 30s infinite linear;
+				top: 25%;
+				left: -50%;
+				width: 40px;
+				@include breakpoint(medium) {
+					width: 90px;
+				}
+			}
+		}
+	}
+	
+	.intro-section {
+		background: url(assets/img/icons-asphalt.jpg);
+		padding: 3em 0;
+		text-align: center;
+		h2, h3, p {
+			color: #dfeffc;
+			margin: 0 auto 1em;
+			max-width: 80%;
+			@include breakpoint(medium) {
+				max-width: 50%;
+			}
+		}
+		h2 {
+			font-size: 2em;
+			margin-bottom: 1em;
+			&:after {
+				background: #dfeffc;
+				content: " ";
+				display: block;
+				height: 5px;
+				margin: 1em auto;
+				width: 60px; 
+			}
+		}
+		h3 {
+			margin-bottom: 1em;
+			text-transform: none;
+		}
+		p {
+			font-size: 1.1em;
+		}
+	}
+	
+	.facts-section {
+		background: #f7f7f7;
+		padding: 3em 0;
+		&__fact {
+			background: #ffffff;
+			border: 1px solid #d7d6d6;
+			float: left;
+			margin-bottom: 1em;
+			width: 100%;
+			@include border-radius(5px);
+			@include breakpoint(medium) {
+				margin: 1%;
+				width: 48%;
+			}
+			&-copy {
+				padding: 5em 2em;
+				position: relative;
+				text-align: center;
+			}
+			h2 {
+				border-bottom: 1px solid #d7d6d6;
+				font-size: 0.8em;
+				margin: 0;
+				padding: 1em;
+				.fa {
+					cursor: pointer;
+					float: right;
+					font-size: 1.2em;
+					position: relative;
+					top: 2px;
+					&:hover {
+						color: #fad5d5;
+					}
+				}
+				.twitter-share-button {
+					float: right;
+					margin-right: 0.9em;
+				}
+			}
+			p {
+				color: #9e9b9b;
+				font-size: 2em;
+				font-weight: 200;
+				letter-spacing: 0.3em;
+				margin: 0;
+				text-transform: uppercase;
+				@include breakpoint(medium) {
+					font-size: 1.9em;
+				}
+				@include breakpoint(large) {
+					font-size: 2em;
+				}
+				span {
+					color: $standard;
+					font-size: 0.9em;
+				}
+			}
+		}
+	}
+	
+	.main-footer {
+		background: #f7f7f7;
+		border-top: 1px solid #d7d6d6;
+		clear: both;
+		padding: 5em 0;
+		text-align: center;
+		p {
+			color: #CDCDCC;
+			font-size: 0.8em;
+			letter-spacing: 0.2em;
+			margin-bottom: 0;
+			text-transform: uppercase;
+			a {
+				color: #CDCDCC;
+				text-decoration: underline;
+			}
+		}
+	}
+	
+	.no-js-box {
+		display: block;
+	}
+	
+	.advanced .no-js-box {
+		display: none;
+	}
+
+	.example {
+		color: red;
+		@include breakpoint(medium) {
+			color: yellow;
+		}
+		@include breakpoint(large) {
+			color: green;
+		}
+		@include breakpoint(retina) {
+			background: url(logo2x.jpg) no-repeat;
+			background-size: 212px 303px;
+		}
+	}
+	
+	/* BASE TEMPLATE STYLES END */
+
+
+/*********************************************
+	- 0.0 -  @FONT-FACE
+*********************************************/
+	
+	@import "partials/_font-face";
+	
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

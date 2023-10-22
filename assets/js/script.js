@@ -4,15 +4,140 @@
 	Author:Shane Prendergast
 	Author URL:http://www.webknit.co.uk
 	Template URL:http://base.webknit.co.uk/
+	
+	If you're not using Grunt, or want to know how to use grunt, then have a read of the following post for more info.
+	http://shaneprendergast.co.uk/css/a-guide-to-base/
 */
 
 // JS EXAMPLE
 
 var Base = Base || {};
 
-Base.LifeNumbers = function() {	
+Base.Masonry = function() {
+
+	$(window).load(function() {
+      
+      	var container = document.querySelector('.masonry-active');
+	    var msnry = new Masonry( container, {
+	      // options
+	      itemSelector: '.masonry-item'
+	    });
+      
+	});
+    
+};
+
+Base.InfoBox = function() {
 	
-	var birthDate = new Date(1986,7,17);
+	var infoBox = $('.information-box');
+	var infoBoxContent = $('.information-box__content-p');
+	var infoBtn = $('.facts-section__fact .fa-info-circle');
+
+	function init() {
+
+		$('.no-js-box').remove();
+		infoBtn.click(showInfo);
+		infoBox.click(hideInfo);
+
+	}
+	
+	function showInfo() {
+	
+		var info = $(this).data('info');
+		infoBoxContent.empty();
+		infoBoxContent.append(info);
+		infoBox.fadeIn();
+	
+	}
+	
+	function hideInfo() {
+	
+		infoBox.fadeOut();
+	
+	}
+
+	init();
+	
+};
+
+Base.submitInfo = function() {
+	
+	var formSubmit = $('.sign-in-section__submit');
+	var nameInput = $('.sign-in-section__name');
+	var nameInputVal;
+
+	function init() {
+
+		formSubmit.click(checkName);
+
+	}
+
+	function checkName() {
+	
+		nameInputVal = nameInput.val();
+		var nameInputValTrim = $.trim(nameInputVal);
+		
+		if(nameInputValTrim < 1) {
+		
+			$('.error-msg').empty();
+            nameInput.addClass('error').next('.error-msg').append("Name not entered incorrect");
+            
+      	}
+      	
+      	else {
+      		
+      		nameInput.removeClass('error').next('.error-msg').hide();
+      		checkDate();
+      		
+      	}
+
+	}
+	
+	function checkDate() {
+	
+		var dobDay = $('.dob-day');
+		var dobDayValue = $('.dob-day').val();
+		var dobMonthValue = $('.dob-month').val();
+		var dobYearValue = $('.dob-year').val();
+		var dobSelects = $('.dob-select');
+		var DOBValue;
+		
+		console.log('DOB ' + dobDayValue);
+		
+		if (dobDayValue == 0) {
+   			
+   			$('.error-msg').empty();
+   			dobDay.addClass('error').next('.error-msg').append("Name not entered incorrect");
+   			
+		}
+		
+		if (dobDayValue == 0 || dobMonthValue == 0 || dobYearValue == 0) {
+   			
+   			$('.error-msg').empty();
+   			dobSelects.addClass('error').next('.error-msg').append("Date not entered incorrect");
+   			
+		}
+		
+		else {
+		
+			DOBValue = dobYearValue + "/" + dobMonthValue + "/" + dobDayValue;
+			new Base.LifeNumbers(nameInputVal, DOBValue);
+			$('body').removeClass('noscroll');
+		
+		}
+	
+	}
+
+	init();
+	
+};
+
+Base.LifeNumbers = function(name, DOB) {	
+
+	$('.sign-in-section').fadeOut();
+	$('.username').text(name);
+	
+	var birthDate = new Date(DOB);
 	var today = new Date();
 	var oneDay = 24*60*60*1000;
 	
@@ -46,8 +171,17 @@ Base.LifeNumbers = function() {
 		calNumWords();
 		calPennyADay();
 		calFiftyADay();
+		calTenAWeek();
+		calHundredMonth();
 		calNumFart();
 		calNumShoes();
+		calNumYearsLeft();
+		
+		var container = document.querySelector('.masonry-active');
+	    var msnry = new Masonry( container, {
+	      // options
+	      itemSelector: '.masonry-item'
+	    });
 		
 	}
 	
@@ -192,7 +326,7 @@ Base.LifeNumbers = function() {
 
 	function calNumberBreaths() {
 	
-		// Going off 14 breaths a day
+		// Going off 14 breaths a min
 		var breaths = minsAlive * 14;
 		var breaths = addCommas(breaths);
 		
@@ -261,9 +395,19 @@ Base.LifeNumbers = function() {
 		// 18 x 52 == 936
 		var legalAge = weeksAlive - 936;
 		var pints = legalAge * 8;
-		var pints = addCommas(pints);
+		var pintsComma = addCommas(pints);
 		
-		$('.num-pints').html(pints);
+		if (pints < 0) {
+			
+			$('.num-pints').html(0);
+			
+		}
+		
+		else {
+		
+			$('.num-pints').html(pintsComma);
+		
+		}	
 		
 	}
 	
@@ -301,7 +445,17 @@ Base.LifeNumbers = function() {
 		var kisses = kisses - 832;
 		var kissesWithCommas = addCommas(kisses);
 		
-		$('.num-kiss').html(kissesWithCommas);
+		if (kisses < 0) {
+			
+			$('.num-kiss').html(0);
+			
+		}
+		
+		else {
+		
+			$('.num-kiss').html(kissesWithCommas);
+		
+		}
 
 	}
 	
@@ -329,7 +483,9 @@ Base.LifeNumbers = function() {
 	function calNumWords() {
 
 		// 7k words per day
-		var numWords = daysAlive * 108;
+		// Start talking when one.
+		var startAtOne = daysAlive - 365
+		var numWords = startAtOne * 7000;
 		var numWords = addCommas(numWords);
 		
 		$('.num-words').html(numWords);
@@ -338,11 +494,35 @@ Base.LifeNumbers = function() {
 	
 	function calPennyADay() {
 
-		var pennyDay = daysAlive * 1;
+		var pennyDay = daysAlive;
 		var pennyDay = pennyDay / 100;
 		var pennyDay = addCommas(pennyDay);
 		
 		$('.num-pennyday').html(pennyDay);
+		
+		var yearlySaving = 3.65;
+		var yearlyInterest = 1.05;
+		var years = yearsAlive;
+		var runningTotal = 0;
+		
+		for (var i = 1; i <= years; i++) {
+		
+			// Add the 365p to each year
+			runningTotal = (runningTotal + yearlySaving);
+			
+			// ...and add the 5% to to the amount
+			runningTotal = runningTotal * yearlyInterest;
+			
+		}
+		
+		var daysLeftOver = yearsAlive * 365;
+		var dayLeftOverSum = daysAlive - daysLeftOver;
+		var dayLeftOverSum = dayLeftOverSum / 100;
+		var totalAmount = runningTotal + dayLeftOverSum;
+		var totalAmount = Math.round(totalAmount);
+		var totalAmount = addCommas(totalAmount);
+		
+		$('.num-pennyday-interest').html(totalAmount);
 
 	}
 	
@@ -353,6 +533,97 @@ Base.LifeNumbers = function() {
 		var fiftyDay = addCommas(fiftyDay);
 		
 		$('.num-fiftyday').html(fiftyDay);
+		
+		var yearlySaving = 182.5;
+		var yearlyInterest = 1.05;
+		var years = yearsAlive;
+		var runningTotal = 0;
+		
+		for (var i = 1; i <= years; i++) {
+		
+			// Add the 365p to each year
+			runningTotal = (runningTotal + yearlySaving);
+			
+			// ...and add the 5% to to the amount
+			runningTotal = runningTotal * yearlyInterest;
+			
+		}
+		
+		var daysLeftOver = yearsAlive * 365;
+		var dayLeftOverSum = daysAlive - daysLeftOver;
+		var dayLeftOverSum = dayLeftOverSum * 0.50;
+		var totalAmount = runningTotal + dayLeftOverSum;
+		var totalAmount = Math.round(runningTotal);
+		var totalAmount = addCommas(totalAmount);
+		
+		$('.num-fiftyday-interest').html(totalAmount);
+
+	}
+	
+	function calTenAWeek() {
+
+		var tenWeek = weeksAlive * 10;
+		var tenWeek = addCommas(tenWeek);
+		
+		$('.num-tenweek').html(tenWeek);
+		
+		var yearlySaving = 520;
+		var yearlyInterest = 1.05;
+		var years = yearsAlive;
+		var runningTotal = 0;
+		
+		for (var i = 1; i <= years; i++) {
+		
+			// Add the 365p to each year
+			runningTotal = (runningTotal + yearlySaving);
+			
+			// ...and add the 5% to to the amount
+			runningTotal = runningTotal * yearlyInterest;
+			
+		}
+		
+		var daysLeftOver = yearsAlive * 365;
+		var dayLeftOverSum = daysAlive - daysLeftOver;
+		var dayLeftOverSum = dayLeftOverSum / 7;
+		var dayLeftOverSum = dayLeftOverSum * 10;
+		var totalAmount = runningTotal + dayLeftOverSum;
+		var totalAmount = Math.round(totalAmount);
+		var totalAmount = addCommas(totalAmount);
+		
+		$('.num-tenweek-interest').html(totalAmount);
+
+	}
+	
+	function calHundredMonth() {
+
+		var hundredMonth = monthsAlive * 100;
+		var hundredMonth = addCommas(hundredMonth);
+		
+		$('.num-hundredmonth').html(hundredMonth);
+		
+		var yearlySaving = 1200;
+		var yearlyInterest = 1.05;
+		var years = yearsAlive;
+		var runningTotal = 0;
+		
+		for (var i = 1; i <= years; i++) {
+		
+			// Add the 365p to each year
+			runningTotal = (runningTotal + yearlySaving);
+			
+			// ...and add the 5% to to the amount
+			runningTotal = runningTotal * yearlyInterest;
+			
+		}
+		
+		var monthsLeftOver = yearsAlive * 12;
+		var monthsLeftOverSum = monthsAlive - monthsLeftOver;
+		var monthsLeftOverSum = monthsLeftOverSum * 100;
+		var totalAmount = runningTotal + monthsLeftOverSum;
+		var totalAmount = Math.round(totalAmount);
+		var totalAmount = addCommas(totalAmount);
+		
+		$('.num-hundredmonth-interest').html(totalAmount);
 
 	}
 	
@@ -374,7 +645,15 @@ Base.LifeNumbers = function() {
 		$('.num-shoes').html(numShoes);
 
 	}
+	
+	function calNumYearsLeft() {
 
+		// Based on 81 being life expectancy
+		var yearsLeft = 81 - yearsAlive;
+		
+		$('.num-years-left').html(yearsLeft);
+
+	}
 	
 	// Function to add commas to the numbers
 	function addCommas(num) {
@@ -386,10 +665,12 @@ Base.LifeNumbers = function() {
 	init();
 };
 
+
 // ON DOC READY
-$(function()
-{	
-	new Base.LifeNumbers();
+$(function() {
+	
+	new Base.submitInfo();
+	new Base.InfoBox();
 	
 });
 

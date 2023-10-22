@@ -1,0 +1,366 @@
+/* - BASE HTML TEMPLATE
+------------------------------------------------- 
+	Description: Animations
+	Author:Shane Prendergast
+	Author URL:http://www.webknit.co.uk
+	Template URL:http://base.webknit.co.uk/
+/*
+
+
+/* - CONTENTS
+-------------------------------------------------
+	- Buildings ............................ 1.0.
+	- Plane ................................ 2.0.
+	- Helicopter ........................... 3.0.
+	- Clouds ............................... 4.0.
+	- Left to right ........................ 5.0.
+	- Right to left ........................ 6.0.
+*/
+
+
+/*********************************************
+	- 1.0 -  BUILDINGS
+*********************************************/
+	
+	@keyframes buildingsMovement {
+		0% {
+			background-position:0 0;
+		}
+		100% {
+			background-position: -1614px 0
+		}
+	}
+	
+	@-webkit-keyframes buildingsMovement {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: -1614px 0
+		}
+	}
+	
+	@-o-keyframes buildingsMovement {
+		0% {
+			background-position: 0 0;
+		}
+		100%{ 
+			background-position: -1614px 0
+		}
+	}
+	
+	@-ms-keyframes buildingsMovement {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: -1614px 0;
+		}
+	}
+	
+	
+/*********************************************
+	- 2.0 -  PLANE
+*********************************************/
+	
+	@keyframes planeMovement {
+		0% {
+			left: -50%;
+			top: 20%;
+		}
+		25% {
+			top: 25%;
+		}
+		50% {
+			top: 30%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 15%;
+		}
+	}
+	
+	@-webkit-keyframes planeMovement {
+		0% {
+			left: -50%;
+			top: 20%;
+		}
+		25% {
+			top: 25%;
+		}
+		50% {
+			top: 30%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 15%;
+		}
+	}
+	
+	@-o-keyframes planeMovement {
+		0% {
+			left: -50%;
+			top: 20%;
+		}
+		25% {
+			top: 25%;
+		}
+		50% {
+			top: 30%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 15%;
+		}
+	}
+	
+	@-ms-keyframes planeMovement {
+		0% {
+			left: -50%;
+			top: 20%;
+		}
+		25% {
+			top: 25%;
+		}
+		50% {
+			top: 30%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 15%;
+		}
+	}
+	
+	
+	
+/*********************************************
+	- 3.0 -  HELICOPTER
+*********************************************/
+	
+	@keyframes helicopterMovement {
+		0% {
+			left: -50%;
+			top: 25%;
+		}
+		25% {
+			top: 10%;
+		}
+		50% {
+			top: 35%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 25%;
+		}
+	}
+	
+	@-webkit-keyframes helicopterMovement {
+		0% {
+			left: -50%;
+			top: 25%;
+		}
+		25% {
+			top: 10%;
+		}
+		50% {
+			top: 35%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 25%;
+		}
+	}
+	
+	@-o-keyframes helicopterMovement {
+		0% {
+			left: -50%;
+			top: 25%;
+		}
+		25% {
+			top: 10%;
+		}
+		50% {
+			top: 35%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 25%;
+		}
+	}
+	
+	@-ms-keyframes helicopterMovement {
+		0% {
+			left: -50%;
+			top: 25%;
+		}
+		25% {
+			top: 10%;
+		}
+		50% {
+			top: 35%;
+		}
+		75% {
+			top: 10%;
+		}
+		100% {
+			left: 150%;
+			top: 25%;
+		}
+	}
+	
+	
+/*********************************************
+	- 4.0 -  CLOUDS
+*********************************************/
+	
+	@keyframes cloudMovement {
+		0% {
+			margin-top: -5px;
+		}
+		50% {
+			margin-top: 5px;
+		}
+		100% {
+			margin-top: 0px;
+		}
+	}
+	
+	@-webkit-keyframes cloudMovement {
+		0% {
+			margin-top: -5px;
+		}
+		50% {
+			margin-top: 5px;
+		}
+		100% {
+			margin-top: 0px;
+		}
+	}
+	
+	@-o-keyframes cloudMovement {
+		0% {
+			margin-top: -5px;
+		}
+		50% {
+			margin-top: 5px;
+		}
+		100% {
+			margin-top: 0px;
+		}
+	}
+	
+	@-ms-keyframes cloudMovement {
+		0% {
+			margin-top: -5px;
+		}
+		50% {
+			margin-top: 5px;
+		}
+		100% {
+			margin-top: 0px;
+		}
+	}
+	
+	
+/*********************************************
+	- 5.0 -  LEFT TO RIGHT
+*********************************************/
+	
+	@keyframes leftToRight {
+		0% {
+			left: -25%;
+		}
+		100% {
+			left: 120%
+		}
+	}
+	
+	@-webkit-keyframes leftToRight {
+		0% {
+			left: -25%;
+		}
+		100% {
+			left: 120%
+		}
+	}
+	
+	@-o-keyframes leftToRight {
+		0% {
+			left: -25%;
+		}
+		100% {
+			left: 120%
+		}
+	}
+	
+	@-ms-keyframes leftToRight {
+		0% {
+			left: -25%;
+		}
+		100% {
+			left: 120%
+		}
+	}
+	
+	
+/*********************************************
+	- 6.0 -  RIGHT TO LEFT
+*********************************************/
+	
+	@keyframes rightToLeft {
+		0% {
+			right: -25%;
+		}
+		100% {
+			right: 120%
+		}
+	}
+	
+	@-webkit-keyframes rightToLeft {
+		0% {
+			right: -25%;
+		}
+		100% {
+			right: 120%
+		}
+	}
+	
+	@-o-keyframes rightToLeft {
+		0% {
+			right: -25%;
+		}
+		100% {
+			right: 120%
+		}
+	}
+	
+	@-ms-keyframes rightToLeft {
+		0% {
+			right: -25%;
+		}
+		100% {
+			right: 120%
+		}
+	}
+

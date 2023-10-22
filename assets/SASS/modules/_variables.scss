@@ -1,0 +1,66 @@
+/* - BASE HTML TEMPLATE
+------------------------------------------------- 
+	Description: Variables
+	Author:Shane Prendergast
+	Author URL:http://www.webknit.co.uk
+	Template URL:http://base.webknit.co.uk/
+/*
+
+
+/* - CONTENTS
+-------------------------------------------------
+	- Colours  ............................. 1.0.
+	- Gradients ............................ 2.0.
+	- Typography  .......................... 3.0.
+		- Font weights ..................... 3.1.
+    	- Base fonts ....................... 3.2.
+    	- Header fonts ..................... 3.3.
+*/
+
+
+/*********************************************
+	- 1.0 -  COLOURS
+*********************************************/
+
+	$standard: #333333;
+	$header: #333333;
+	$link: #d8544b;
+	$link-hover: #e2766f;
+
+	
+/*********************************************
+	- 2.0 -  GRADIENTS
+*********************************************/
+	
+
+/*********************************************
+	- 3.0 -  TYPOGRAPHY
+*********************************************/
+
+	/* - 3.1. - FONT WEIGHTS
+	------------------------------------------ */
+
+	$thin: 100;
+	$light: 300;
+	$regular: 400;
+	$bold: 700;
+	$exbold: 800;
+	$blackbold: 900;
+	$header-weight: 800;
+
+	/* - 3.1. - BASE FONTS
+	------------------------------------------ */
+	
+	$base-font-family: "proxima-nova", Arial, "Helvetica Neue", Helvetica, sans-serif;
+	$base-font-weight: $regular;
+	$base-font-size: 1em;
+	$base-line-height: 1.4;
+	
+	
+	/* - 3.2. - HEADER FONTS
+	------------------------------------------ */
+	
+	$header-font-family: "proxima-nova", Arial, "Helvetica Neue", Helvetica, sans-serif;
+	
+	
+	
